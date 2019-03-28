@@ -30,6 +30,6 @@ app.use(router)
 
 /* 监听端口启动服务 */
 app.listen(port, ()=>{
-  console.log(`Example app listening on port ${port}!`)
+  console.log(`Example app listening on 127.0.0.1:${port}`)
 })
 
