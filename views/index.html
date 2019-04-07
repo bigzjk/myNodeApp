@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="../../favicon.ico">
-  <title>Dashboard Template for Bootstrap</title>
+  <title>模拟管理系统</title>
   <!-- Bootstrap core CSS -->
   <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
@@ -88,7 +88,7 @@
                 <td>{{ $value.hobbies }}</td>
                 <td>
                   <a href="/students/edit?id={{ $value.id }}">编辑</a>
-                  <a href="/students/delete?id={{ $value.id }}">删除</a>
+                  <a href="javascript:;" onclick="alert(0)">删除</a>
                 </td>
               </tr>
               {{ /each }}
