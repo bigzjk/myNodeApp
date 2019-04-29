@@ -1,37 +1,79 @@
-/*
-* @Author: alkun
-* @Date:   2019-04-15 23:29:37
-* @Last Modified by:   alkun
-* @Last Modified time: 2019-04-16 00:07:08
-*/
+// 对数据的增删改查操作
+const fs = require('fs')
+let dbPath = './db.json'
 
-'use strict';
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema
-// students本地没有会自动创建
-mongoose.connect('mongodb://localhost/students',{ useNewUrlParser: true })
-let studentSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  age: {
-    type: String
-  },
-  gender: {
-    type: String,
-    enum: [0, 1],
-    default: 0
-  },
-  hobbies: {
-    type: String
-  }
-})
-
-
-studentSchema.methods.add = function(name,callback){    
-    Students.save({name:name}).exec(callback); // not checking logic
+const Student = {
+    find: (callback)=>{
+        fs.readFile(dbPath, 'utf8', (err, data)=>{
+            if(err){
+                return callback(err)
+            }
+            callback(null, JSON.parse(data).students)
+        })
+    },
+    save: (obj, callback)=>{
+        fs.readFile(dbPath, 'utf8', (err, data)=>{
+            if(err){
+                return callback(err)
+            }
+            var students = JSON.parse(data).students
+            obj.id = students[students.length-1].id + 1
+            students.push(obj)
+            var result = JSON.stringify({
+                students
+            })
+            fs.writeFile(dbPath, result, (err)=>{
+                if(err){
+                    callback(err)
+                }
+                callback(null)
+            })
+        })
+    },
+    change: (info, callback)=>{
+        Student.find((err, data)=>{
+            if(err) {
+                callback(err)
+            }
+            for (var i = 0; i < data.length; i++) {
+                if(info.id == data[i].id){
+                    data[i]={
+                        ...data[i],
+                        ...info
+                    }
+                    break;
+                }
+            };
+            let dbJson = {students: data}
+            fs.writeFile(dbPath, JSON.stringify(dbJson), (err)=>{
+                if(err){
+                    callback(err)
+                }
+                callback(null)
+            })
+        })
+    },
+    delete: (id)=>{
+        Student.find((err, data)=>{
+            if(err) {
+                callback(err)
+            }
+            for (var i = 0; i < data.length; i++) {
+                if(id == data[i].id){
+                    data.splice(i, 1)
+                    break;
+                }
+            };
+            let dbJson = {students: data}
+            fs.writeFile(dbPath, JSON.stringify(dbJson), (err)=>{
+                if(err){
+                    callback(err)
+                }
+                callback(null)
+            })
+        })
+        console.log('delete');
+    },
 }
 
-// Students会自动创建
-var Students = module.exports = mongoose.model('Students', studentSchema)
+module.exports = Student
