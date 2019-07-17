@@ -1,0 +1,852 @@
+@charset "utf-8";
+/*css reset*/
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+hr,
+button,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    margin: 0;
+    padding: 0;
+}
+body,
+button,
+input,
+select,
+textarea {
+    font: normal 28px/1.5 "Heiti SC", "Arial", "Lucida Grande", Verdana, STXhei, "Microsoft YaHei", "hei";
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+iframe {
+    display: block;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 600;
+}
+
+h4,
+h5,
+h6 {
+    font-weight: 500;
+}
+h1{
+  font-size: 40px;
+}
+h2{
+  font-size: 36px;
+}
+h3{
+  font-size: 32px;
+}
+
+address,
+cite,
+dfn,
+em,
+var,
+i {
+    font-style: normal;
+    font-weight: normal;
+}
+
+dfn {
+    font-family: Arial;
+}
+
+ul,
+ol,
+ul li,
+ol li {
+    list-style: none;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+a:hover {
+    transition: color .2s linear;
+}
+
+fieldset,
+img,
+button,
+input {
+    border: 0 none;
+    vertical-align: middle;
+}
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%;
+}
+.iphoneX{
+    padding-bottom: constant(safe-area-inset-bottom) !important;
+    padding-bottom: env(safe-area-inset-bottom) !important;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*-webkit-appearance改变按钮和其他控件的外观，使其类似于原生控件*/
+
+input {
+    appearance: none;
+    border-radius: 0;
+}
+
+body {
+    min-width: 320px;
+    max-width: 750px;
+    margin: 0 auto !important;
+    background: #f9f9f9;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-font-smoothing: antialiased;
+    /*user-select: none;*/
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+    position: relative;
+    color: #000;
+}
+
+:focus {
+    outline: none;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.overflow {
+    overflow: hidden;
+}
+
+.center {
+    text-align: center;
+}
+
+/*flex布局*/
+
+.flex-wrap {
+    display: flex;
+}
+
+.flex1 {
+    flex: 1
+}
+
+.flex2 {
+    flex: 2;
+}
+
+.flex3 {
+    flex: 3;
+}
+
+.flex4 {
+    flex: 4;
+}
+
+.flex5 {
+    flex: 5;
+}
+
+// .flex-vertical {
+//     &:extend .flex-wrap;
+//     flex-direction: column;
+// }
+
+// .flex-center {
+//     &:extend .flex-wrap;
+//     justify-content: center;
+// }
+
+// .flex-middle {
+//     &:extend .flex-wrap;
+//     align-content: center
+// }
+
+// .flex-between {
+//     &:extend .flex-wrap;
+//     justify-content: space-between;
+// }
+
+// .flex-around {
+//     &:extend .flex-wrap;
+//     justify-content: space-around;
+// }
+
+html,
+body,
+#root {
+    height: 100%;
+}
+
+.padTop90 {
+    padding-top: 90px;
+}
+
+/*请提示字符串换行*/
+
+.am-toast-notice-content .am-toast-text {
+    word-wrap: break-word;
+}
+
+/*截取*/
+
+// .line-clamp-1 {
+//     &:extend(ellipsis-basic)
+// }
+
+// .line-clamp-2 {
+//     &:include(.line-clamp());
+// }
+
+// .line-clamp-3 {
+//     &:include(.line-clamp(3));
+// }
+// .line-clamp-4{
+//   &:include(.line-clamp(4));
+// }
+// .line-clamp-5{
+//   &:include(.line-clamp(5));
+// }
+// .line-clamp-15{
+//   &:include(.line-clamp(15));
+// }
+/*清浮动*/
+
+// .clearfix {
+//     &:extend(clearfix);
+// }
+
+// /*隐藏*/
+
+// .hide {
+//     &:extend(hidden);
+// }
+
+/*Unable to preventDefault inside passive event listener due to target being treated as passive chrome浏览器*/
+
+/** { touch-action: none; }*/
+
+.affix-wrapper {
+  position: fixed;
+//   left: 636px;
+  right: 34px;
+  bottom: 160px;
+  z-index: 90;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+// iPhoneX底部适配
+@media only screen and (device-width: 375px) and (device-height: 812px){
+    .affix-wrapper {
+        //padding-bottom: 68px;
+    }
+}
+// iPhoneXR底部适配
+@media only screen and (device-width: 414px) and (device-height: 896px){
+    .affix-wrapper {
+        //padding-bottom: 68px;
+    }
+}
+
+/*划价*/
+.delete-price{
+  position: relative;
+  vertical-align: text-bottom;
+  &::before{
+    position:absolute;
+    content: '';
+    height:0;
+    width: 100%;
+    left: 0;
+    border-top:1PX solid #666666;
+    top: 50%;
+  };
+}
+/*还有VIP字的渐变ICON*/
+.vipIcon {
+    background-image: linear-gradient(-180deg, #faf9f1 0%, #eee4c0 100%);
+    border: 1PX solid #e0ce94;
+    border-radius: 4px;
+    width: 36px;
+    height: 22px;
+    position: relative;
+    display: inline-block;
+    overflow:hidden;
+    vertical-align: middle;
+    margin-top: -4px;
+    margin-right: 12px;
+    &::after {
+        position: absolute;
+        content: 'VIP';
+        width: 72px;
+        height: 44px;
+        font-size: 36px;
+        line-height: 44px;
+        text-align: center;
+        transform: scale(.5);
+        transform-origin: 0 0;
+        left: 0;
+        top: 0;
+    }
+}
+/*浅红色券的icon,例如商品详情里面的券*/
+.couponIcon{
+  border-radius:4px;
+  font-size:20px;
+  color:#c13b38;
+  background:#fff7f5;
+  display: inline-block;
+  line-height: 1;
+  padding: 11px 15px;
+  white-space: nowrap;
+  position: relative;
+  &:before,&:after{
+    content:'';
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    position: absolute;
+    transform:translateY(-50%);
+    top: 50%;
+  }
+  &:before{
+    left: -5px;
+  }
+  &:after{
+    right: -5px;
+  }
+}
+
+// 售罄
+.soldout::after,.sellout::after {
+    position: absolute;
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    content: '已售罄';
+    color: #fff;
+    font-family:PingFangSC-Regular;
+    font-size:34px;
+    border-radius: 50%;
+    margin: 0;
+    width: 65%;
+    height: 65%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+//下架
+.sellout::after{
+    content: '已下架';
+}
+.soldout-text {
+    color: #ccc !important;
+}
+
+.soldout-text span {
+    color: #ccc !important;
+}
+
+.soldout_backg::before {
+    background:  #ccc!important;
+    color: #fff;
+    border: 1px solid#ccc!important;
+}
+
+.soldout-bg {
+    background-color: #ccc!important;
+    color: #fff !important;
+}
+
+.videoThumb-play-btn {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(0,0,0,0.5);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+    border-radius: 50%;
+    &.mini {
+        width: 50px;
+        height: 50px;
+        &::after {
+            border-left: 18px solid #fff;
+            border-bottom: 12px solid transparent;
+            border-right: 18px solid transparent;
+            border-top: 12px solid transparent;
+        }
+    }
+  }
+
+.videoThumb-play-btn:after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 25px solid #fff;
+    border-bottom: 16px solid transparent;
+    border-right: 25px solid transparent;
+    border-top: 16px solid transparent;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-20%, -50%);
+    border-radius: 6px;
+}
+
+/* 阻止窗口滚动 */
+.noscroll,
+.noscroll body {
+    overflow: hidden;
+}
+.noscroll body {
+    position: relative;
+}
+/* 阻止窗口滚动 end*/
+
+html #__vconsole .vc-switch{
+  bottom:1rem;
+}
+
+/*公用input placeholder 的颜色，统一颜色*/
+input,textarea {
+    &::-webkit-input-placeholder{
+        color: #cccccc!important;
+    }
+    &:-moz-placeholder{
+        color: #cccccc!important;
+    }
+    &::-moz-placeholder{
+        color: #cccccc!important;
+    }
+    &::-ms-input-placeholder{
+        color: #cccccc!important;
+    }
+}
+
+.theme-red{
+    color: #c13b38!important;
+}
+.theme-vip{
+    color: #AE8844;
+}
+
+/* 调试彩蛋 start */
+.tagh5{
+    position: fixed;
+    z-index: 999999;
+    top: 0;
+    left: 50%;
+    background: red;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 24px;
+    color: #fff;
+    opacity: .8;
+    transform: translateX(-50%);
+}
+/* 调试彩蛋 end */
+#wrapElementMain {
+    min-height: 100%;
+}
+
+// 箭头右边→
+.arr-right{
+    position: relative;
+}
+.arr-right::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    width: 12px;
+    height: 12px;
+    border-top: 1PX solid #999;
+    border-right: 1PX solid #999;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+/*module title*/
+.module-title{
+    height: 40px;
+    line-height: 30px;
+    margin: 10px 0 0;
+    background-color: #fff;
+    box-sizing:border-box;
+    border-bottom: 1px solid #e5e5e5;
+    position: relative;
+    color: #262626;
+    font-weight: normal;
+    overflow: hidden;
+  }
+  .module-title h3{
+    font-weight: normal;
+  }
+  .module-title a.link-area{
+    display:block;
+    width: 100%;
+    color: #262626;
+  }
+  
+  .module-title.no-arrow{
+    padding: 5px 15px;
+  }
+  .module-title span,.module-title a{
+    font-weight: normal;
+  }
+  .module-title .text-cen{
+    text-align: center;
+  }
+//   .module-title .online{
+//     width: 23px;
+//     height: 23px;
+//     background: url("../images/wechat.png") center /23px 23px no-repeat;
+//     display: inline-block;
+//     vertical-align: top;
+//     margin: 2px 8px 0 0;
+//   }
+  .module-title .arrow-right{
+    position: absolute;
+    top: 50%;
+    right: 35px;
+    margin-top: -4px;
+  }
+  .module-title .arrow-right:before{
+    content: "";
+    width: 8px;
+    height: 8px;
+    display: block;
+    border-left: 2px solid #000;
+    border-top: 2px solid #000;
+    -webkit-transform:rotate(135deg);
+    -moz-transform:rotate(135deg);
+    -ms-transform:rotate(135deg);
+    transform:rotate(135deg);
+  }
+
+/* start适配iPhone X XR的css大集合，feifei，20181203  */
+// ！！！tips： 新增x适配的时候 别忘了xr适配里面加同一份代码
+ @media only screen and (device-width: 375px) and (device-height: 812px){
+    //height类
+    //.x-xr-height50{
+    //    height: 50px!important;
+    //}
+    //.x-xr-height68{
+    //    height: 68px!important;
+    //}
+    //.x-xr-height80{
+    //    height: 80px!important;
+    //}
+    //.x-xr-height100{
+    //    height: 100px!important;
+    //}
+    //.x-xr-height120{
+    //    height: 120px!important;
+    //}
+    //.x-xr-height150{
+    //    height: 150px!important;
+    //}
+    //
+    ////lineheight类
+    //.x-xr-lineheight50{
+    //    line-height: 50px!important;
+    //}
+    //.x-xr-lineheight68{
+    //    line-height: 68px!important;
+    //}
+    //.x-xr-lineheight80{
+    //    line-height: 80px!important;
+    //}
+    //.x-xr-lineheight100{
+    //    line-height: 100px!important;
+    //}
+    //.x-xr-lineheight120{
+    //    line-height: 120px!important;
+    //}
+    //.x-xr-lineheight150{
+    //    line-height: 150px!important;
+    //}
+    //.x-xr-lineheight138{
+    //    line-height: 138px!important;
+    //}
+    //
+    ////padding-bottom类
+    //.x-xr-paddingbtom50{
+    //    padding-bottom: 50px!important;
+    //}
+    //.x-xr-paddingbtom68{
+    //    padding-bottom: 68px!important;
+    //}
+    //.x-xr-paddingbtom80{
+    //    padding-bottom: 80px!important;
+    //}
+    //.x-xr-paddingbtom100{
+    //    padding-bottom: 100px!important;
+    //}
+    //.x-xr-paddingbtom120{
+    //    padding-bottom: 120px!important;
+    //}
+    //.x-xr-paddingbtom150{
+    //    padding-bottom: 150px!important;
+    //}
+    //
+    ////bottom类
+    //.x-xr-bottom50{
+    //    bottom: 50px!important;
+    //}
+    //.x-xr-bottom68{
+    //    bottom: 68px!important;
+    //}
+    //.x-xr-bottom80{
+    //    bottom: 80px!important;
+    //}
+    //.x-xr-bottom100{
+    //    bottom: 100px!important;
+    //}
+    //.x-xr-bottom120{
+    //    bottom: 120px!important;
+    //}
+    //.x-xr-bottom150{
+    //    bottom: 150px!important;
+    //}
+    //
+    ////margin类
+    //.x-xr-margin50{
+    //    margin: 50px!important;
+    //}
+    //.x-xr-margin68{
+    //    margin: 68px!important;
+    //}
+    //.x-xr-margin80{
+    //    margin: 80px!important;
+    //}
+    //.x-xr-margin100{
+    //    margin: 100px!important;
+    //}
+    //.x-xr-margin120{
+    //    margin: 120px!important;
+    //}
+    //.x-xr-margin150{
+    //    margin: 150px!important;
+    //}
+}
+//适配XR 代码和适配X的一模一样
+@media only screen and (device-width: 414px) and (device-height: 896px){
+    // //height类
+    //.x-xr-height50{
+    //    height: 50px!important;
+    //}
+    //.x-xr-height68{
+    //    height: 68px!important;
+    //}
+    //.x-xr-height80{
+    //    height: 80px!important;
+    //}
+    //.x-xr-height100{
+    //    height: 100px!important;
+    //}
+    //.x-xr-height120{
+    //    height: 120px!important;
+    //}
+    //.x-xr-height150{
+    //    height: 150px!important;
+    //}
+    //
+    ////lineheight类
+    //.x-xr-lineheight50{
+    //    line-height: 50px!important;
+    //}
+    //.x-xr-lineheight68{
+    //    line-height: 68px!important;
+    //}
+    //.x-xr-lineheight80{
+    //    line-height: 80px!important;
+    //}
+    //.x-xr-lineheight100{
+    //    line-height: 100px!important;
+    //}
+    //.x-xr-lineheight120{
+    //    line-height: 120px!important;
+    //}
+    //.x-xr-lineheight150{
+    //    line-height: 150px!important;
+    //}
+    //.x-xr-lineheight138{
+    //    line-height: 138px!important;
+    //}
+    //
+    ////padding-bottom类
+    //.x-xr-paddingbtom50{
+    //    padding-bottom: 50px!important;
+    //}
+    //.x-xr-paddingbtom68{
+    //    padding-bottom: 68px!important;
+    //}
+    //.x-xr-paddingbtom80{
+    //    padding-bottom: 80px!important;
+    //}
+    //.x-xr-paddingbtom100{
+    //    padding-bottom: 100px!important;
+    //}
+    //.x-xr-paddingbtom120{
+    //    padding-bottom: 120px!important;
+    //}
+    //.x-xr-paddingbtom150{
+    //    padding-bottom: 150px!important;
+    //}
+    //
+    ////bottom类
+    //.x-xr-bottom50{
+    //    bottom: 50px!important;
+    //}
+    //.x-xr-bottom68{
+    //    bottom: 68px!important;
+    //}
+    //.x-xr-bottom80{
+    //    bottom: 80px!important;
+    //}
+    //.x-xr-bottom100{
+    //    bottom: 100px!important;
+    //}
+    //.x-xr-bottom120{
+    //    bottom: 120px!important;
+    //}
+    //.x-xr-bottom150{
+    //    bottom: 150px!important;
+    //}
+    //
+    ////margin类
+    //.x-xr-margin50{
+    //    margin: 50px!important;
+    //}
+    //.x-xr-margin68{
+    //    margin: 68px!important;
+    //}
+    //.x-xr-margin80{
+    //    margin: 80px!important;
+    //}
+    //.x-xr-margin100{
+    //    margin: 100px!important;
+    //}
+    //.x-xr-margin120{
+    //    margin: 120px!important;
+    //}
+    //.x-xr-margin150{
+    //    margin: 150px!important;
+    //}
+}
+/* end适配iPhone X XR的css大集合，feifei，20181203  */
+
+/* svg的样式 */
+.icon-svg path {
+    fill: currentColor;
+}
+
+/* 通用的pc居中不超出样式 */
+.pc-center{
+    min-width: 3.2rem;
+    max-width: 7.5rem;
+    margin: 0 auto;
+}
+/*图片检测，未压缩裁剪提示*/
+#imageFiterErrorPop {
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    color: #ffffff;
+    padding: 30px;
+    box-sizing: border-box;
+    background-color: rgba(0,0,0,.8);
+    .imageFiterErrorPopCn{
+        word-break: break-all;
+    }
+    p {
+        color: red;
+        font-weight: bolder;
+        font-size: 36px;
+        padding-bottom: 20px;
+    }
+}
+
+/* 没有更多样式 */
+.no-more-tips {
+    padding: 30px 15px;
+    text-align: center;
+    color: #999999;
+    font-size: 24px;
+    width: 100%;
+}

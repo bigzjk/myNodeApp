@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script type="text/javascript">
+    var Dpr = 1,
+        uAgent = window.navigator.userAgent,
+        isIOS = uAgent.match(/iphone/i),
+        isYIXIN = uAgent.match(/yixin/i),
+        is2345 = uAgent.match(/Mb2345/i),
+        ishaosou = uAgent.match(/mso_app/i),
+        isSogou = uAgent.match(/sogoumobilebrowser/gi),
+        isLiebao = uAgent.match(/liebaofast/i),
+        isGnbr = uAgent.match(/GNBR/i);
+
+        function resizeRoot() {
+            var e, i = screen.width > 0 && (window.innerWidth >= screen.width || 0 == window.innerWidth) ? screen.width : window.innerWidth,
+                n = screen.height > 0 && (window.innerHeight >= screen.height || 0 == window.innerHeight) ? screen.height : window.innerHeight;
+            window.devicePixelRatio && window.devicePixelRatio, isIOS && (i = screen.width, n = screen.height), i > n && (i = n), (e = (e = i > 1080 ? 144 : i / 7.5) > 32 ? e : 32) > 100 && (e = 100), window.screenWidth_ = i, isYIXIN || is2345 || ishaosou || isSogou || isLiebao || isGnbr ? setTimeout(function() { i = screen.width > 0 && (window.innerWidth >= screen.width || 0 == window.innerWidth) ? screen.width : window.innerWidth, n = screen.height > 0 && (window.innerHeight >= screen.height || 0 == window.innerHeight) ? screen.height : window.innerHeight, e = (e = i > 1080 ? 144 : i / 7.5) > 32 ? e : 32, document.getElementsByTagName("html")[0].style.fontSize = e + "px"}, 500) : (document.getElementsByTagName("html")[0].style.fontSize = e + "px")
+        }
+        resizeRoot();
+        var reviseViewPort = function(e, i) {
+            var n = 0,
+                t = i || 5,
+                o = setInterval(function() {
+                    var e, i = screen.width > 0 && window.innerWidth >= screen.width ? screen.width : window.innerWidth;
+                    i < window.screenWidth_ ? (window.screenWidth_ = i, e = (e = i > 1080 ? 144 : i / 7.5) > 32 ? e : 32, document.getElementsByTagName("html")[0].style.fontSize = e + "px", clearInterval(o)) : n++, n >= t && clearInterval(o)
+                }, e || 200)
+        };
+        reviseViewPort(200);
+        // 窗口变化重置 安卓键盘弹起来会影响
+        // window.onresize = function () {
+        //     resizeRoot();
+        //     reviseViewPort(200);
+        // }
+        // 引入 Promise 的 fallback 支持 (部分安卓手机不支持 Promise)
+        if (!window.Promise) {
+            document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' + '>' + '<' + '/' + 'script>');
+        }
+    </script>
+<body>
+    <div id="root"></div>
+    <!-- <script src="../dist/build.js"></script> -->
+</body>
+</html>
