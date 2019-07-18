@@ -2,22 +2,18 @@ const axios = require('axios')
 const { userAgent } = require('./userAgent')
 module.exports = (opt) =>{
     let paramsInfo = {
-        baseURL: 'https://api.zhuishushenqi.com/',
+        baseURL: 'http://m.music.migu.cn/migu/remoting',
         method: opt.type || 'get',
         url: opt.url,
         headers: {
-            'User-Agent': userAgent()
+            'User-Agent': userAgent(),
+            // 'Access-Control-Allow-Origin': '*'
         }
     }
-    if (paramsInfo.type == 'get'){
+    if (paramsInfo.method == 'get'){
         paramsInfo.params = opt.data
     } else {
         paramsInfo.data = opt.data
     }
-    paramsInfo = {
-        ...paramsInfo,
-        ...opt
-    }
-
     return axios(paramsInfo)
 }

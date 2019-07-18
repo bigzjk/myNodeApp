@@ -6,19 +6,16 @@
  */
 
 'use strict';
-// const fs = require('fs')
+// const path = require('path')
 // const http = require('http')
 const express = require('express')
 // const Student = require('./student-fs')
 const Student = require('./student')
 const router = express.Router()
-// const axios = require('axios')
+const axios = require('axios')
 const request = require('./utils/request')
 
-// let _fn
-// let apiHost = 'https://b.zhuishushenqi.com/v2/category/ranklist?node=8c31c6a912464c3e9de4cc6c2c8c402a&type=&packageName=&token='
-// let apiHost = 'https://api.zhuishushenqi.com/recommendPage/pages?version=3'
-// let apiHost = 'https://mtop.damai.cn/h5/mtop.damai.wireless.search.projectlist.byrecommend.get/1.0/?jsv=2.4.8&appKey=12574478&t=1563421812324&sign=f9e17321b891aa61f25b94b1afe2850e&api=mtop.damai.wireless.search.projectlist.byrecommend.get&v=1.0&dataType=json&H5Request=true&AntiCreep=true&AntiFlood=true&type=originaljson'
+let apiHost = 'http://m.music.migu.cn/migu/remoting/cms_list_tag?pageSize=10&nid=23831003&pageNo=0&type=2006'
 
 router
     .get('/', (req, res) => {
@@ -31,8 +28,22 @@ router
             })
         })
     })
-    .get('/zhuishu', async (req, res, next) => {
-        
+    .get('/cms_list_tag', async (req, res, next) => {
+        // console.log(req.query)
+        // 分类页
+        res.set('Access-Control-Allow-Origin', '*')
+        // axios.defaults.headers['Origin'] =  '*'
+        let resp = await request({
+            type: 'get',
+            url: '/cms_list_tag',
+            data: req.query
+        })
+        res.send(resp.data)
+       
+    })
+    // /category/fuzzy-search?&limit=50&alias=ns_xuanhuan&packageName=com.ifmoc.ZhuiShuShenQi&sort=1&start=0
+    .get('/category/fuzzy-search', async (req, res, next) => {
+        // 分类页
         res.set('Access-Control-Allow-Origin', '*')
         // axios.defaults.headers['Origin'] =  '*'
         
@@ -41,7 +52,7 @@ router
         // })
         let resp = await request({
             type: 'get',
-            url: 'recommendPage/pages?version=3'
+            url: '/category/fuzzy-search?limit=50&alias=ns_xuanhuan&packageName=com.ifmoc.ZhuiShuShenQi&sort=1&start=0'
         })
         res.send(resp.data)
        

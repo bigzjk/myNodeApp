@@ -7,17 +7,15 @@ export default class Home extends React.Component {
     constructor() {
         super()
         this.state = {
-            haha: 'wodehahahah',
-            pages: []
+            data: {}
         }
     }
     componentDidMount() {
-        axios.get('http://127.0.0.1:3000/zhuishu').then((resp) =>{
-            console.log(resp)
+        axios.get('http://127.0.0.1:3000/cms_list_tag?pageSize=10&nid=23831003&pageNo=0&type=2006').then((resp) =>{
             let data = resp.data
+            console.log('data', data)
             this.setState({
-                data,
-                pages: data.pages
+                data: data.result
             })
 
         }).catch((e)=>{
@@ -25,17 +23,21 @@ export default class Home extends React.Component {
         })
     }
     render() {
-        const { data, pages } = this.state
-        {}
-        return <div className="Home">
-            <div className="sub">sublimt</div>
-            {this.state.haha}
-            <Link to="./search"> go Search </Link>
-            {pages.map((item)=>(
-                <div key={item._id}>
-                    <a href={item.url}>{item.title}</a>
-                </div>
-            ))}
-        </div>
+        const { data = {}, pages } = this.state
+        let { results = [] } = data
+        console.log(results)
+        return(
+            <div className="Home">
+                <ul class="banner">
+                    {results.length > 0 && results.map((item)=>(
+                        <li className="banneritem" key={item.contentId}>
+                            <img src={item.linkData.linkPicUrl} alt=""/>
+                            <div>{item.linkData.linkTitle}</div>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        )
+
     }
 }
