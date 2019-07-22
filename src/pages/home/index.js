@@ -36,6 +36,7 @@ export default class Home extends React.Component {
                     text="这里是props: string数据"
                     demoObj={demoObj}
                 />
+                <Link to="/search">这里是路由跳转Link</Link>
                 <ul className="banner">
                     {results.length > 0 && results.map((item)=>(
                         <li className="banneritem" key={item.contentId}>
