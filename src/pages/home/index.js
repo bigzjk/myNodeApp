@@ -11,7 +11,7 @@ export default class Home extends React.Component {
         }
     }
     componentDidMount() {
-        axios.get('http://127.0.0.1:3000/cms_list_tag?pageSize=10&nid=23831003&pageNo=0&type=2006').then((resp) =>{
+        axios.get('http://127.0.0.1:3456/cms_list_tag?pageSize=10&nid=25066472&pageNo=0&type=2006').then((resp) =>{
             let data = resp.data
             console.log('data', data)
             this.setState({
@@ -28,7 +28,7 @@ export default class Home extends React.Component {
         console.log(results)
         return(
             <div className="Home">
-                <ul class="banner">
+                <ul className="banner">
                     {results.length > 0 && results.map((item)=>(
                         <li className="banneritem" key={item.contentId}>
                             <img src={item.linkData.linkPicUrl} alt=""/>
