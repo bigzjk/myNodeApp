@@ -1,13 +1,17 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 const axios = require('axios')
-
+import Demo from '../../components/Demo'
 import './index.less'
 export default class Home extends React.Component {
     constructor() {
         super()
         this.state = {
-            data: {}
+            data: {},
+            demoObj: {
+                name: '这里是object数据',
+                age: 19
+            }
         }
     }
     componentDidMount() {
@@ -23,11 +27,15 @@ export default class Home extends React.Component {
         })
     }
     render() {
-        const { data = {}, pages } = this.state
+        const { data = {}, demoObj } = this.state
         let { results = [] } = data
         console.log(results)
         return(
             <div className="Home">
+                <Demo 
+                    text="这里是props: string数据"
+                    demoObj={demoObj}
+                />
                 <ul className="banner">
                     {results.length > 0 && results.map((item)=>(
                         <li className="banneritem" key={item.contentId}>
