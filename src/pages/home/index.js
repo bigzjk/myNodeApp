@@ -13,9 +13,6 @@ export default class Home extends React.Component {
                 name: '这里是object数据',
                 age: 19
             },
-            selectedTab: 'redTab',
-            fullScreen: false,
-            hidden: false,
         }
     }
     componentDidMount() {
@@ -73,7 +70,7 @@ export default class Home extends React.Component {
                         onClick={() => {
                             window.location.href = 'https://mobile.ant.design/components/nav-bar-cn/'
                         }}
-                    >前往官网</Button>
+                    >前往antd官网</Button>
                 </div>
                 {false && <ul className="banner">
                     {results.length > 0 && results.map((item) => (
