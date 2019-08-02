@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from "react-router-dom";
 import { Button, Carousel } from 'antd-mobile';
 const axios = require('axios')
 import Demo from '../../components/Demo'
+import HookDemo from '../../components/HookDemo'
 import './index.less'
+
+
 export default class Home extends React.Component {
     constructor() {
         super()
@@ -16,7 +19,7 @@ export default class Home extends React.Component {
         }
     }
     componentDidMount() {
-        axios.get('http://127.0.0.1:3456/cms_list_tag?pageSize=10&nid=25066472&pageNo=0&type=2006').then((resp) => {
+        axios.get('http://127.0.0.1:3456/cms_list_tag?pageSize=10&nid=23831003&pageNo=0&type=2006').then((resp) => {
             let data = resp.data
             console.log('data', data)
             this.setState({
@@ -31,12 +34,12 @@ export default class Home extends React.Component {
     render() {
         const { data = {}, demoObj } = this.state
         let { results = [] } = data
-        console.log(results)
         return (
             <div className="Home">
                 {results.length > 0 ? <Carousel
-                    autoplay={false}
+                    autoplay
                     infinite
+                    autoplayInterval={3000}
                     beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
                     afterChange={index => console.log('slide to', index)}
                 >
@@ -80,6 +83,7 @@ export default class Home extends React.Component {
                         </li>
                     ))}
                 </ul>}
+                <HookDemo />
                 
             </div>
         )
